@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PONTE//MSU-MCEST</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* RESET & VARS */
+        :root {
+            --bg: #030712;
+            --bg-card: #0f172a;
+            --glass: rgba(15, 23, 42, 0.6);
+            --primary: #3b82f6;
+            --accent: #f59e0b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        /* FULL-WIDTH NAV */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-bar .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .nav-bar .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-apply {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        /* HERO BENTO */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 90px 5% 40px;
+            position: relative;
+        }
+
+        .hero-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(50px);
+            z-index: 0;
+        }
+
+        .bento-hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+            z-index: 1;
+        }
+
+        .bento-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s, border-color 0.4s;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .bento-main {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9));
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .bento-main h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .bento-main h1 span {
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .bento-main p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 85%;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .btn-p {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-p:hover {
+            background: #2563eb;
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-s {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-s:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bento-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .bento-stat h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .bento-stat p {
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        /* MARQUEE TILTED */
+        .marquee-container {
+            width: 100vw;
+            transform: rotate(-1.5deg) scale(1.02);
+            background: var(--primary);
+            padding: 10px 0;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .marquee-inner {
+            display: flex;
+            white-space: nowrap;
+            animation: moveLeft 20s linear infinite;
+        }
+
+        .marquee-item {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .marquee-item::after {
+            content: '✦';
+            color: var(--accent);
+        }
+
+        @keyframes moveLeft {
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ABOUT SPLIT */
+        .about-section {
+            padding: 50px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .img-glass {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .img-glass h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .img-glass h3 em {
+            color: var(--accent);
+        }
+
+        .award-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--accent), #d97706);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            transform: rotate(12deg);
+        }
+
+        .award-badge span {
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .award-badge small {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* PROGRAMS CUSTOM GRID */
+        .programs-section {
+            padding: 60px 5%;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .sec-head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sec-head h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dept-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--theme-color);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dc-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .dc-header img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+
+        .dc-title h3 {
+            color: var(--theme-color);
+            font-size: 1.05rem;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .dc-title p {
+            color: var(--muted);
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        .dc-programs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dc-prog-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dc-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--theme-color);
+            flex-shrink: 0;
+        }
+
+        .dc-prog-name {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.75);
+            flex-grow: 1;
+            line-height: 1.3;
+        }
+
+        .dc-badge {
+            background: var(--theme-bg);
+            color: var(--theme-color);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* FEATURES Z-PATTERN */
+        .features-section {
+            padding: 60px 5%;
+            position: relative;
+            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.03), transparent);
+        }
+
+        .feat-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feat-row {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .feat-row:hover {
+            background: rgba(255, 255, 255, 0.03);
+            transform: scale(1.01);
+        }
+
+        .feat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-weight: 900;
+            line-height: 0.8;
+        }
+
+        .feat-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        .feat-content p {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* NEWS */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+
+        .news-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nc-img {
+            height: 160px;
+            background: linear-gradient(145deg, #0f172a, #1e3a8a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: 0.5s;
+        }
+
+        .news-card:hover .nc-img {
+            transform: scale(1.05);
+        }
+
+        .nc-info {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .nc-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .nc-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        /* CALL TO ACTION */
+        .cta {
+            margin: 60px 5%;
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            border-radius: 25px;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(255,255,255,0.2)'/%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 5% 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .fb h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .fb p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 250px;
+        }
+
+        .fd h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .fd ul {
+            list-style: none;
+        }
+
+        .fd li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .fd a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .fd a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        @media(max-width: 1024px) {
+
+            .bento-hero,
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .departments-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid,
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bento-main {
+                grid-column: 1;
+                grid-row: 1;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .departments-grid,
+            .news-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feat-row {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .bento-main h1 {
+                font-size: 2rem;
+            }
+
+            .bento-main p {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-bar">
+        <a href="http://msumcest.edu.ph/" target="_blank" class="logo">
+            <img src="campus-logo.png"
+                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=MSU&background=f39c12&color=0f172a&size=150&bold=true'"
+                alt="Logo">
+            <span>MSU-MCEST</span>
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#programs">Programs</a>
+            <a href="#features">Excellence</a>
+            <a href="#news">News</a>
+            <a href="http://msumcest.edu.ph/pages/Admission/Admissions.php" target="_blank" class="nav-apply">Apply
+                Now</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-blob"></div>
+        <div class="bento-hero">
+            <div class="bento-item bento-main">
+                <div><span class="badge">COPC Certified Institution</span></div>
+                <h1>Where <br><span>Excellence</span> <br>Meets Innovation</h1>
+                <p>A premier public institution in Maigo, Lanao del Norte, dedicated to transformative education,
+                    research, and community development across Mindanao.</p>
+                <div class="cta-group">
+                    <a href="http://msumcest.edu.ph/pages/Admission/Admissions.php" target="_blank"
+                        class="btn btn-p">Get Started</a>
+                    <a href="#programs" class="btn btn-s">View Programs</a>
+                </div>
+            </div>
+            <div class="bento-item bento-stat">
+                <h2>100%</h2>
+                <p>LET Passing Rate</p>
+            </div>
+            <div class="bento-item bento-stat">
+                <h2 style="color:var(--primary);">81+</h2>
+                <p>Expert Faculty</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-container">
+        <div class="marquee-inner">
+            <div class="marquee-item">Board Topnotchers</div>
+            <div class="marquee-item">100% LET Passing Rate</div>
+            <div class="marquee-item">COPC Certified</div>
+            <div class="marquee-item">ASEAN Quality Award</div>
+            <div class="marquee-item">Global Partnerships</div>
+            <div class="marquee-item">Top-Tier Education</div>
+            <div class="marquee-item">Board Topnotchers</div>
+            <div class="marquee-item">100% LET Passing Rate</div>
+            <div class="marquee-item">COPC Certified</div>
+            <div class="marquee-item">ASEAN Quality Award</div>
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <div class="about-text">
+            <div><span class="badge" style="margin-bottom:8px;">Our Identity</span></div>
+            <h2 style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:15px; line-height:1.2;">A
+                Legacy of<br>Excellence</h2>
+            <p style="color:var(--muted); font-size:0.95rem; line-height:1.6; margin-bottom:20px;">
+                MSU-MCEST is a premier public institution in Northern Mindanao. Formerly known as MSU-MSAT, it was
+                officially renamed to reflect its expanded structural vision in education, science, and technology.
+            </p>
+            <p style="color:var(--muted); font-size:0.95rem; line-height:1.6;">
+                Recognized by CHED Region 10 with the prestigious ASEAN Quality Award, the institution serves as a
+                lighthouse for academic rigor and student development.
+            </p>
+        </div>
+        <div class="about-image">
+            <div class="award-badge">
+                <span>#1</span>
+                <small>ASEAN<br>Quality</small>
+            </div>
+            <div class="img-glass">
+                <a href="http://msumcest.edu.ph/pages/news/news-view.php?id=16" target="_blank"></a>
+                <h3>"A transformative education fostering excellence through instruction, research, and innovation."
+                </h3>
+                <p style="color:var(--accent); text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem;">—
+                    Institutional Mission</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs-section" id="programs">
+        <div class="sec-head">
+            <span class="badge">Colleges</span>
+            <h2>Academic Departments</h2>
+        </div>
+
+        <div class="departments-grid">
+            <!-- CS -->
+            <div class="dept-card" style="--theme-color: #3b82f6; --theme-bg: rgba(59, 130, 246, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dcs.png" alt="CS Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#60a5fa;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dcs.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Department of Computer
+                                Science</a></h3>
+                        <p>Technology & Innovation</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Science in Computer Science</span>
+                        <span class="dc-badge" style="color:#93c5fd;">BSCS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HM -->
+            <div class="dept-card" style="--theme-color: #f59e0b; --theme-bg: rgba(245, 158, 11, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dhm.png" alt="HM Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#fbbf24;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dhm.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Department of Hospitality
+                                Management</a></h3>
+                        <p>Tourism & Culinary Arts</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Science in Hospitality Management</span>
+                        <span class="dc-badge" style="color:#fcd34d;">BSHM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IT -->
+            <div class="dept-card" style="--theme-color: #10b981; --theme-bg: rgba(16, 185, 129, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dit.png" alt="IT Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#34d399;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dit.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Department of Industrial
+                                Technology</a>
+                        </h3>
+                        <p>Engineering & Trades</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Industrial Technology – Electrical</span>
+                        <span class="dc-badge" style="color:#6ee7b7;">BIT-E</span>
+                    </div>
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Industrial Technology – Electronics</span>
+                        <span class="dc-badge" style="color:#6ee7b7;">BIT-EC</span>
+                    </div>
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Industrial Technology – Automotive</span>
+                        <span class="dc-badge" style="color:#6ee7b7;">BIT-A</span>
+                    </div>
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Industrial Technology – Drafting</span>
+                        <span class="dc-badge" style="color:#6ee7b7;">BIT-D</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Work -->
+            <div class="dept-card" style="--theme-color: #ec4899; --theme-bg: rgba(236, 72, 153, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dsw.png" alt="SW Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#f472b6;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dsw.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Department of Social
+                                Work</a></h3>
+                        <p>Community & Welfare</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Science in Social Work</span>
+                        <span class="dc-badge" style="color:#f9a8d4;">BSSW</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="dept-card" style="--theme-color: #a855f7; --theme-bg: rgba(168, 85, 247, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dhess.png" alt="HESS Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#c084fc;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dhess.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Humanities, Education &
+                                Social Sciences</a></h3>
+                        <p>Arts & Teaching</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Elementary Education</span>
+                        <span class="dc-badge" style="color:#d8b4fe;">BEED</span>
+                    </div>
+                </div>
+                <div class="dc-prog-row">
+                    <span class="dc-dot"></span>
+                    <span class="dc-prog-name">Bachelor of Technology and Livelihood Education major in Home
+                        Economics</span>
+                    <span class="dc-badge" style="color:#d8b4fe;">BTLED-HE</span>
+                </div>
+                <div class="dc-prog-row">
+                    <span class="dc-dot"></span>
+                    <span class="dc-prog-name">Bachelor of Technology and Livelihood Education major in Industrial
+                        Arts</span>
+                    <span class="dc-badge" style="color:#d8b4fe;">BTLED-IA</span>
+                </div>
+            </div>
+
+            <!-- Criminology -->
+            <div class="dept-card" style="--theme-color: #ef4444; --theme-bg: rgba(239, 68, 68, 0.15);">
+                <div class="dc-header">
+                    <img src="dept-logo-dcje.png" alt="CJE Logo">
+                    <div class="dc-title">
+                        <h3 style="color:#f87171;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dcje.php"
+                                target="_blank" style="color:inherit; text-decoration:none;">Department of
+                                Criminology</a></h3>
+                        <p>Justice & Security</p>
+                    </div>
+                </div>
+                <div class="dc-programs">
+                    <div class="dc-prog-row">
+                        <span class="dc-dot"></span>
+                        <span class="dc-prog-name">Bachelor of Science in Criminology</span>
+                        <span class="dc-badge" style="color:#fca5a5;">BSCRIM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="sec-head">
+            <span class="badge">Advantage</span>
+            <h2>Why Choose Us</h2>
+        </div>
+        <div class="feat-list">
+            <div class="feat-row">
+                <div class="feat-num">01</div>
+                <div class="feat-content">
+                    <h4><a href="http://msumcest.edu.ph/index.php" target="_blank"
+                            style="color:inherit; text-decoration:none;">Board Excellence</a></h4>
+                    <p>We consistently produce national board topnotchers and maintain an impeccable 100% LET passing
+                        rate. Academic rigor is in our DNA.</p>
+                </div>
+            </div>
+            <div class="feat-row">
+                <div class="feat-num">02</div>
+                <div class="feat-content">
+                    <h4><a href="http://msumcest.edu.ph/index.php" target="_blank"
+                            style="color:inherit; text-decoration:none;">COPC Certified</a></h4>
+                    <p>Fully compliant with CHED's strictest standards, ensuring that every program offered guarantees
+                        world-class operational and pedagogical quality.</p>
+                </div>
+            </div>
+            <div class="feat-row" style="border-left:3px solid var(--primary);">
+                <div class="feat-num">03</div>
+                <div class="feat-content">
+                    <h4><a href="http://msumcest.edu.ph/index.php" target="_blank"
+                            style="color:inherit; text-decoration:none;">Global Research Output</a></h4>
+                    <p>Through our OREDI initiative, expert faculty and dedicated students actively develop applied
+                        research to serve the local and global society.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-grid" id="news">
+        <div
+            style="grid-column:1/-1; display:flex; justify-content:space-between; align-items:end; margin-bottom:10px;">
+            <h2 style="font-family:'Playfair Display',serif; font-size:2rem;">News & Alerts</h2>
+            <a href="http://msumcest.edu.ph/pages/news/news.php" target="_blank" class="btn btn-s">View All</a>
+        </div>
+        <div class="news-card">
+            <div class="nc-img">🏆</div>
+            <div class="nc-info">
+                <span class="nc-tag">Award</span>
+                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=16" target="_blank"
+                        style="color:inherit; text-decoration:none;">ASEAN Quality Recognition by CHED Region 10</a>
+                </h3>
+                <p style="color:var(--muted); font-size:0.85rem;">Outstanding contributions to higher education
+                    evaluated.</p>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="nc-img" style="background:linear-gradient(145deg, #1e293b, #0f172a);">🏫</div>
+            <div class="nc-info">
+                <span class="nc-tag">Milestone</span>
+                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=19" target="_blank"
+                        style="color:inherit; text-decoration:none;">Official Renaming to MSU-MCEST</a></h3>
+                <p style="color:var(--muted); font-size:0.85rem;">Signaling a broader vision in science and tech fields.
+                </p>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="nc-img" style="background:linear-gradient(145deg, #020617, #1e3a8a);">✈️</div>
+            <div class="nc-info">
+                <span class="nc-tag">Global</span>
+                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=17" target="_blank"
+                        style="color:inherit; text-decoration:none;">Partnerships Forged in Indonesia & Malaysia</a>
+                </h3>
+                <p style="color:var(--muted); font-size:0.85rem;">Opening doors for exchange programs next year.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Your Future Starts Here.</h2>
+            <p style="color:rgba(255,255,255,0.7); font-size:1rem; margin-bottom:25px;">Join thousands of scholars and
+                innovators transforming Mindanao.</p>
+            <a href="http://msumcest.edu.ph/pages/Admission/Admissions.php" target="_blank" class="btn"
+                style="background:#fff; color:var(--primary); font-size:0.95rem; padding:12px 30px;">Apply for
+                Admission</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="fb">
+                <h3>MSU-MCEST</h3>
+                <p>Maigo College of Education, Science & Technology. Advancing instruction, research, and innovation.
+                </p>
+            </div>
+            <div class="fd">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="http://msumcest.edu.ph/pages/about/mcest.php" target="_blank">Campus</a></li>
+                    <li><a href="http://msumcest.edu.ph/pages/about/vmgo.php" target="_blank">VMGO</a></li>
+                    <li><a href="http://msumcest.edu.ph/pages/Faculty_Staff/faculty.php" target="_blank">Faculty</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fd">
+                <h4>Admissions</h4>
+                <ul>
+                    <li><a href="http://msumcest.edu.ph/pages/Admission/Undergraduate.php" target="_blank">Undergrad</a>
+                    </li>
+                    <li><a href="http://msumcest.edu.ph/pages/Admission/Graduate.php" target="_blank">Graduate</a></li>
+                    <li><a href="http://msumcest.edu.ph/pages/downloads/dtesda.php" target="_blank">TESDA</a></li>
+                </ul>
+            </div>
+            <div class="fd">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="http://msumcest.edu.ph/pages/news/news.php" target="_blank">News</a></li>
+                    <li><a href="http://msumcest.edu.ph/pages/campus_life/Libraries.php" target="_blank">Library</a>
+                    </li>
+                    <li><a href="http://msumcest.edu.ph/" target="_blank">Official Site</a></li>
+                </ul>
+            </div>
+        </div>
+        <div
+            style="border-top:1px solid rgba(255,255,255,0.1); padding-top:15px; display:flex; justify-content:space-between; color:var(--muted); font-size:0.75rem;">
+            <span>© 2026 MSU-MCEST. All Rights Reserved.</span>
+            <span>Maigo, Lanao del Norte</span>
+        </div>
+    </footer>
+
+    <!-- Return to Top Button -->
+    <style>
+        #return-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary, #3b82f6);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+        }
+
+        #return-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #return-to-top.show:hover {
+            background: rgba(59, 130, 246, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+    <a href="#" id="return-to-top" title="Return to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+    <script>
+        const returnToTop = document.getElementById('return-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                returnToTop.classList.add('show');
+            } else {
+                returnToTop.classList.remove('show');
+            }
+        });
+        returnToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
