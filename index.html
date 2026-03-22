@@ -26,6 +26,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Jost', sans-serif;
             background: var(--bg);
@@ -566,10 +570,10 @@
 
         /* CALL TO ACTION */
         .cta {
-            margin: 60px 5%;
+            margin: 30px 5%;
             background: linear-gradient(135deg, var(--primary), #1e3a8a);
-            border-radius: 25px;
-            padding: 50px 30px;
+            border-radius: 20px;
+            padding: 30px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -591,8 +595,8 @@
 
         .cta h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
@@ -697,6 +701,31 @@
             .bento-main p {
                 max-width: 100%;
             }
+
+            html {
+                scroll-behavior: smooth;
+                /* enables smooth scrolling */
+            }
+
+            #backToTop {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                padding: 10px 15px;
+                font-size: 18px;
+                border: none;
+                border-radius: 50%;
+                background-color: #333;
+                color: white;
+                cursor: pointer;
+                display: none;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            #backToTop:hover {
+                transform: scale(1.1);
+                background-color: #555;
+            }
         }
     </style>
 </head>
@@ -714,7 +743,6 @@
             <a href="#about">About</a>
             <a href="#programs">Programs</a>
             <a href="#features">Excellence</a>
-            <a href="#news">News</a>
             <a href="http://msumcest.edu.ph/pages/Admission/Admissions.php" target="_blank" class="nav-apply">Apply
                 Now</a>
         </div>
@@ -725,7 +753,7 @@
         <div class="bento-hero">
             <div class="bento-item bento-main">
                 <div><span class="badge">COPC Certified Institution</span></div>
-                <h1>Where <br><span>Excellence</span> <br>Meets Innovation</h1>
+                <h1>Where <br><span>Innovation</span> <br>Never Stops</h1>
                 <p>A premier public institution in Maigo, Lanao del Norte, dedicated to transformative education,
                     research, and community development across Mindanao.</p>
                 <div class="cta-group">
@@ -797,11 +825,11 @@
 
         <div class="departments-grid">
             <!-- CS -->
-            <div class="dept-card" style="--theme-color: #3b82f6; --theme-bg: rgba(59, 130, 246, 0.15);">
+            <div class="dept-card" style="--theme-color: #01863d; --theme-bg: rgba(59, 130, 246, 0.15);">
                 <div class="dc-header">
                     <img src="dept-logo-dcs.png" alt="CS Logo">
                     <div class="dc-title">
-                        <h3 style="color:#60a5fa;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dcs.php"
+                        <h3 style="color:#0de22a;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dcs.php"
                                 target="_blank" style="color:inherit; text-decoration:none;">Department of Computer
                                 Science</a></h3>
                         <p>Technology & Innovation</p>
@@ -811,7 +839,7 @@
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Science in Computer Science</span>
-                        <span class="dc-badge" style="color:#93c5fd;">BSCS</span>
+                        <span class="dc-badge" style="color:#0ef80e;">BSCS</span>
                     </div>
                 </div>
             </div>
@@ -837,11 +865,11 @@
             </div>
 
             <!-- IT -->
-            <div class="dept-card" style="--theme-color: #10b981; --theme-bg: rgba(16, 185, 129, 0.15);">
+            <div class="dept-card" style="--theme-color: #af057c; --theme-bg: rgba(16, 185, 129, 0.15);">
                 <div class="dc-header">
                     <img src="dept-logo-dit.png" alt="IT Logo">
                     <div class="dc-title">
-                        <h3 style="color:#34d399;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dit.php"
+                        <h3 style="color:#f871e2;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dit.php"
                                 target="_blank" style="color:inherit; text-decoration:none;">Department of Industrial
                                 Technology</a>
                         </h3>
@@ -852,22 +880,22 @@
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Industrial Technology – Electrical</span>
-                        <span class="dc-badge" style="color:#6ee7b7;">BIT-E</span>
+                        <span class="dc-badge" style="color:#fa08ee;">BIT-E</span>
                     </div>
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Industrial Technology – Electronics</span>
-                        <span class="dc-badge" style="color:#6ee7b7;">BIT-EC</span>
+                        <span class="dc-badge" style="color:#fa08ee;">BIT-EC</span>
                     </div>
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Industrial Technology – Automotive</span>
-                        <span class="dc-badge" style="color:#6ee7b7;">BIT-A</span>
+                        <span class="dc-badge" style="color:#fa08ee;">BIT-A</span>
                     </div>
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Industrial Technology – Drafting</span>
-                        <span class="dc-badge" style="color:#6ee7b7;">BIT-D</span>
+                        <span class="dc-badge" style="color:#fa08ee;">BIT-D</span>
                     </div>
                 </div>
             </div>
@@ -893,11 +921,11 @@
             </div>
 
             <!-- Education -->
-            <div class="dept-card" style="--theme-color: #a855f7; --theme-bg: rgba(168, 85, 247, 0.15);">
+            <div class="dept-card" style="--theme-color: #dae63e; --theme-bg: rgba(168, 85, 247, 0.15);">
                 <div class="dc-header">
                     <img src="dept-logo-dhess.png" alt="HESS Logo">
                     <div class="dc-title">
-                        <h3 style="color:#c084fc;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dhess.php"
+                        <h3 style="color:#daf53f;"><a href="http://msumcest.edu.ph/pages/academics/acad_dept_dhess.php"
                                 target="_blank" style="color:inherit; text-decoration:none;">Humanities, Education &
                                 Social Sciences</a></h3>
                         <p>Arts & Teaching</p>
@@ -907,20 +935,20 @@
                     <div class="dc-prog-row">
                         <span class="dc-dot"></span>
                         <span class="dc-prog-name">Bachelor of Elementary Education</span>
-                        <span class="dc-badge" style="color:#d8b4fe;">BEED</span>
+                        <span class="dc-badge" style="color:#e3f543;">BEED</span>
                     </div>
                 </div>
                 <div class="dc-prog-row">
                     <span class="dc-dot"></span>
                     <span class="dc-prog-name">Bachelor of Technology and Livelihood Education major in Home
                         Economics</span>
-                    <span class="dc-badge" style="color:#d8b4fe;">BTLED-HE</span>
+                    <span class="dc-badge" style="color:#e3f543;">BTLED-HE</span>
                 </div>
                 <div class="dc-prog-row">
                     <span class="dc-dot"></span>
                     <span class="dc-prog-name">Bachelor of Technology and Livelihood Education major in Industrial
                         Arts</span>
-                    <span class="dc-badge" style="color:#d8b4fe;">BTLED-IA</span>
+                    <span class="dc-badge" style="color:#e3f543;">BTLED-IA</span>
                 </div>
             </div>
 
@@ -982,52 +1010,13 @@
         </div>
     </section>
 
-    <section class="news-grid" id="news">
-        <div
-            style="grid-column:1/-1; display:flex; justify-content:space-between; align-items:end; margin-bottom:10px;">
-            <h2 style="font-family:'Playfair Display',serif; font-size:2rem;">News & Alerts</h2>
-            <a href="http://msumcest.edu.ph/pages/news/news.php" target="_blank" class="btn btn-s">View All</a>
-        </div>
-        <div class="news-card">
-            <div class="nc-img">🏆</div>
-            <div class="nc-info">
-                <span class="nc-tag">Award</span>
-                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=16" target="_blank"
-                        style="color:inherit; text-decoration:none;">ASEAN Quality Recognition by CHED Region 10</a>
-                </h3>
-                <p style="color:var(--muted); font-size:0.85rem;">Outstanding contributions to higher education
-                    evaluated.</p>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="nc-img" style="background:linear-gradient(145deg, #1e293b, #0f172a);">🏫</div>
-            <div class="nc-info">
-                <span class="nc-tag">Milestone</span>
-                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=19" target="_blank"
-                        style="color:inherit; text-decoration:none;">Official Renaming to MSU-MCEST</a></h3>
-                <p style="color:var(--muted); font-size:0.85rem;">Signaling a broader vision in science and tech fields.
-                </p>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="nc-img" style="background:linear-gradient(145deg, #020617, #1e3a8a);">✈️</div>
-            <div class="nc-info">
-                <span class="nc-tag">Global</span>
-                <h3><a href="http://msumcest.edu.ph/pages/news/news-view.php?id=17" target="_blank"
-                        style="color:inherit; text-decoration:none;">Partnerships Forged in Indonesia & Malaysia</a>
-                </h3>
-                <p style="color:var(--muted); font-size:0.85rem;">Opening doors for exchange programs next year.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="cta">
         <div class="cta-content">
             <h2>Your Future Starts Here.</h2>
-            <p style="color:rgba(255,255,255,0.7); font-size:1rem; margin-bottom:25px;">Join thousands of scholars and
+            <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; margin-bottom:15px;">Join thousands of scholars and
                 innovators transforming Mindanao.</p>
             <a href="http://msumcest.edu.ph/pages/Admission/Admissions.php" target="_blank" class="btn"
-                style="background:#fff; color:var(--primary); font-size:0.95rem; padding:12px 30px;">Apply for
+                style="background:#fff; color:var(--primary); font-size:0.9rem; padding:10px 25px;">Apply for
                 Admission</a>
         </div>
     </section>
